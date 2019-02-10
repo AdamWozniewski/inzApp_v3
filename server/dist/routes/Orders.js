@@ -1,14 +1,14 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 const express_1 = require("express");
-class MembersRoute {
+class OrdersRoute {
     static setRoute(nameOfPath) {
         const router = express_1.Router();
-        const memberRoute = new MembersRoute();
+        const ordersRoute = new OrdersRoute();
         // router.get(`${nameOfPath}/`, memberRoute.indexMarkers.bind(markerRoute));
         // router.post(`${nameOfPath}/add_marker`, memberRoute.makeMarker.bind(markerRoute));
         return router;
     }
 }
-exports.MembersRoute = MembersRoute;
-//# sourceMappingURL=Members.js.map
+exports.OrdersRoute = OrdersRoute;
+//# sourceMappingURL=Orders.js.map

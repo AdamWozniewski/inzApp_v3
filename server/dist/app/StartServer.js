@@ -10,6 +10,10 @@ var __importStar = (this && this.__importStar) || function (mod) {
     return result;
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const dotenv_1 = __importDefault(require("dotenv"));
+dotenv_1.default.config({
+    path: '.env'
+});
 const express_1 = __importDefault(require("express"));
 const socket_io_1 = __importDefault(require("socket.io"));
 const bodyParser = __importStar(require("body-parser"));
@@ -17,6 +21,7 @@ const path = __importStar(require("path"));
 const http_1 = require("http");
 // import { IndexRoute } from './../routes/IndexRoute';
 const static_1 = require("../static/static");
+const passport_1 = __importDefault(require("./../config/passport"));
 class StartServer {
     constructor() {
         this.app = express_1.default();
@@ -25,6 +30,7 @@ class StartServer {
         this.startServer();
         this.setStaticConfig();
         this.setRouter();
+        passport_1.default();
     }
     setRouter() {
         const router = express_1.default.Router();

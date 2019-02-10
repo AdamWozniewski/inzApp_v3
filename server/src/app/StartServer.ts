@@ -1,11 +1,20 @@
+import dotenv from 'dotenv';
+dotenv.config({
+    path: '.env'
+});
+
 import express, { Application, Request, Response, Router } from 'express';
 import socketIo ,{ Server as SocketIOServer } from 'socket.io';
+import mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import { createServer, Server as HttpServer } from 'http';
-// import { IndexRoute } from './../routes/IndexRoute';
+import { IndexRoute } from './../routes/IndexRoute';
 
-import { PORT } from '../static/static';
+import { PORT } from './../config/static';
+
+import { MONGO_URL } from './../config/database';
+import passportConfig from './../config/passport';
 
 export class StartServer {
     private app: Application;
@@ -20,15 +29,22 @@ export class StartServer {
         this.startServer();
         this.setStaticConfig();
         this.setRouter();
+        this.setDatabaseConnect();
+        passportConfig();
     }
     private setRouter () {
         const router: Router = express.Router();
-        // router.get('/', (req, res) => res.sendFile('index.html.gz'));
-        // this.app.use(router);
 
-        // router.use(IndexRoute.setRoute('/'));
 
-        this.app.use(router);
+        this.app.use(IndexRoute.setUpLinks());
+    }
+    private setDatabaseConnect() {
+        mongoose.connect(MONGO_URL);
+        mongoose.Promise = global.Promise;
+        mongoose.connection.on('error', err => {
+            console.log('Could not connect to the database. Exiting now...');
+            process.exit();
+        });
     }
     private setStaticConfig () {
         this.app.use(bodyParser.json());

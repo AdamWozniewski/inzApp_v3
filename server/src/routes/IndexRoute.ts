@@ -1,16 +1,26 @@
 import { Router, Response, Request } from 'express';
-import * as path from 'path';
+import SetRoute from '../services/SetRoute';
+import links from './../config/staticLinks';
 
-export class IndexRoute {
+import { MarkersRoute } from './Markers';
+import { OrdersRoute } from './Orders';
+import { MembersRoute } from './Members';
+
+export class IndexRoute implements SetRoute {
     public index (req: Request, res: Response): void {
-        console.log("weszlo2")
         return res.sendFile('indexs.html.gz');
     }
-    public static setRoute(linkOfPage: string): Router {
-        console.log("weszlo1")
+    public setRoute(): any {
         const router: Router = Router();
-        const indexRoute:IndexRoute = new IndexRoute();
-        router.get(linkOfPage, indexRoute.index.bind(indexRoute));
+
+        router.use(MarkersRoute.setRoute(links.endpointType.markers));
+        router.use(OrdersRoute.setRoute(links.endpointType.orders));
+        router.use(MembersRoute.setRoute(links.endpointType.members));
+
         return router;
+    }
+    public static setUpLinks (): Router {
+        const linker: IndexRoute = new IndexRoute();
+        return linker.setRoute();
     }
 }
