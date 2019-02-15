@@ -1,1 +1,0 @@
-export const MONGO_URL: string = 'mongodb://localhost:27017/overment';

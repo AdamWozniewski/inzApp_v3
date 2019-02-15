@@ -1,7 +1,5 @@
 import dotenv from 'dotenv';
-dotenv.config({
-    path: '.env'
-});
+dotenv.config();
 
 import express, { Application, Request, Response, Router } from 'express';
 import socketIo ,{ Server as SocketIOServer } from 'socket.io';
@@ -11,9 +9,6 @@ import * as path from 'path';
 import { createServer, Server as HttpServer } from 'http';
 import { IndexRoute } from './../routes/IndexRoute';
 
-import { PORT } from './../config/static';
-
-import { MONGO_URL } from './../config/database';
 import passportConfig from './../config/passport';
 
 export class StartServer {
@@ -31,18 +26,17 @@ export class StartServer {
         this.setRouter();
         this.setDatabaseConnect();
         passportConfig();
+
+        console.log(process.env)
     }
     private setRouter () {
-        const router: Router = express.Router();
-
-
         this.app.use(IndexRoute.setUpLinks());
     }
     private setDatabaseConnect() {
-        mongoose.connect(MONGO_URL);
+        mongoose.connect(process.env.MONGO_URL);
         mongoose.Promise = global.Promise;
         mongoose.connection.on('error', err => {
-            console.log('Could not connect to the database. Exiting now...');
+            console.log('Błąd połączenia do bazy danych...');
             process.exit();
         });
     }
@@ -60,7 +54,7 @@ export class StartServer {
         this.app.set('io', this.io);
     }
     private startServer () {
-        this.server.listen(PORT, () => console.log('\x1b[36m', 'Serwer uruchomiony'));
+        this.server.listen(process.env.PORT, () => console.log('\x1b[36m', 'Serwer uruchomiony'));
     }
     public static bootstrap (): StartServer {
         return new StartServer();

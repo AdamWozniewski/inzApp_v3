@@ -1,16 +1,21 @@
-import User from '../models/User';
 import jwt from 'jsonwebtoken';
 import { Router, Response, Request } from 'express';
+import User from './../models/User';
 
 export default {
     async register(req: Request, res: Response, next: any): Promise<any> {
-        const {first_name, last_name, email, password} = req.body;
+        const {
+            first_name,
+            last_name,
+            email,
+            password
+        } = req.body;
         const user = new User({
             first_name,
             last_name,
             email,
         });
-        await User.register(user, password);
+        // await User.register(user, password);
 
         res.send("utpwrzeono")
     },

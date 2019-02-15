@@ -19,7 +19,7 @@ function passportConfig() {
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
         secretOrKey: process.env.SECRET
     };
-    passport.use(User.createStrategy());
+    // passport.use(User.createStrategy());
     passport.use(new JWTStrategy(config, verifyCallback));
 }
 export default passportConfig;

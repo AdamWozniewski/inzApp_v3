@@ -1,5 +1,5 @@
-import mongoose from 'mongoose';
-import {plugin, prop, Typegoose} from "typegoose";
+import { mongoose, model } from 'mongoose';
+import { prop, Typegoose, ModelType, InstanceType, plugin } from 'typegoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 
 // const UserSchema = new mongoose.Schema({
@@ -21,9 +21,7 @@ import passportLocalMongoose from 'passport-local-mongoose';
 
 
 
-@plugin(passportLocalMongoose, {
-    usernameField: 'email'
-})
+@plugin(passportLocalMongoose)
 class UserSchema extends Typegoose {
     @prop({ required: true })
     first_name?: String;
@@ -31,11 +29,7 @@ class UserSchema extends Typegoose {
     @prop({ required: true })
     last_name?: String;
 
-    @prop({
-        required: true,
-        lowercase: true,
-        trim: true,
-    })
+    @prop({required: true})
     email?: {
         type: String,
         unique: true,
@@ -44,5 +38,10 @@ class UserSchema extends Typegoose {
     }
 }
 
-const User= new UserSchema().getModelForClass(UserSchema);
+const User: UserSchema  = new UserSchema().getModelForClass(UserSchema, {
+    schemaOptions: {
+        collection: 'users',
+    }
+});
+
 export default User;

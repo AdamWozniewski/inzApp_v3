@@ -12,7 +12,9 @@ export class IndexRoute implements SetRoute {
     }
     public setRoute(): any {
         const router: Router = Router();
-
+        router.get('/', (req, res) => {
+            return res.send("weszlo")
+        })
         router.use(MarkersRoute.setRoute(links.endpointType.markers));
         router.use(OrdersRoute.setRoute(links.endpointType.orders));
         router.use(MembersRoute.setRoute(links.endpointType.members));
