@@ -1,4 +1,4 @@
-import { mongoose, model } from 'mongoose';
+import { Mongoose, model } from 'mongoose';
 import { prop, Typegoose, ModelType, InstanceType, plugin } from 'typegoose';
 import passportLocalMongoose from 'passport-local-mongoose';
 
@@ -38,7 +38,7 @@ class UserSchema extends Typegoose {
     }
 }
 
-const User: UserSchema  = new UserSchema().getModelForClass(UserSchema, {
+const User: any  = new UserSchema().getModelForClass(UserSchema, {
     schemaOptions: {
         collection: 'users',
     }

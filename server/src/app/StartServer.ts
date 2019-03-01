@@ -7,8 +7,8 @@ import mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import { createServer, Server as HttpServer } from 'http';
-import { IndexRoute } from './../routes/IndexRoute';
 
+import { IndexRoute } from './../routes/IndexRoute';
 import passportConfig from './../config/passport';
 
 export class StartServer {
@@ -26,8 +26,6 @@ export class StartServer {
         this.setRouter();
         this.setDatabaseConnect();
         passportConfig();
-
-        console.log(process.env)
     }
     private setRouter () {
         this.app.use(IndexRoute.setUpLinks());

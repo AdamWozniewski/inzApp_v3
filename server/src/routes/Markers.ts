@@ -1,6 +1,7 @@
 import {
     Router,
 } from 'express';
+import { getAllMarkersByPerson } from './../controllers/markerController';
 
 export class MarkersRoute {
     public static setRoute (nameOfPath: string): Router {
