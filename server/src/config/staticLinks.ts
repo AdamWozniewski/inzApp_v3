@@ -3,8 +3,12 @@ const links = {
         markers: '/markers/',
         members: '/members/',
         orders: '/orders/',
-        register: '/register/',
-        login: '/login/',
+        auth: '/auth',
+
+        actions: {
+            register: '/register',
+            login: '/login',
+        },
     }
 };
 

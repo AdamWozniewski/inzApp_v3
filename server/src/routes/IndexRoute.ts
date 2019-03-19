@@ -5,6 +5,7 @@ import links from './../config/staticLinks';
 import { MarkersRoute } from './Markers';
 import { OrdersRoute } from './Orders';
 import { MembersRoute } from './Members';
+import { AuthRoute } from './Auth';
 
 export class IndexRoute implements SetRoute {
     public index (req: Request, res: Response): void {
@@ -12,15 +13,10 @@ export class IndexRoute implements SetRoute {
     }
     public setRoute(): any {
         const router: Router = Router();
-        router.get('/testowe', (req, res) => {
-            return res.json({
-                data: 'DZIALA'
-            })
-        });
-        router.use(MarkersRoute.setRoute(links.endpointType.markers));
-        router.use(OrdersRoute.setRoute(links.endpointType.orders));
-        router.use(MembersRoute.setRoute(links.endpointType.members));
-
+        // router.use(MarkersRoute.setRoute(links.endpointType.markers));
+        // router.use(OrdersRoute.setRoute(links.endpointType.orders));
+        // router.use(MembersRoute.setRoute(links.endpointType.members));
+        router.use(AuthRoute.setRoute(links.endpointType.auth));
         return router;
     }
     public static setUpLinks (): Router {
