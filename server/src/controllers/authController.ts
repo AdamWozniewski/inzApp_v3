@@ -1,16 +1,16 @@
 import jwt from 'jsonwebtoken';
 import { Response, Request } from 'express';
-import User from '../models/User';
+import User from './../models/User';
 
 export default {
-    async register(req: Request, res: Response, next: any): Promise<any> {
+    register: async function (req: Request, res: Response, next: any): Promise<any> {
         const {
             first_name,
             last_name,
             email,
             password
         } = req.body;
-        const user = new User({
+        const user: any = new User({
             first_name,
             last_name,
             email,
@@ -28,6 +28,6 @@ export default {
             });
         return res.send({
             token,
-        })
+        });
     },
 }

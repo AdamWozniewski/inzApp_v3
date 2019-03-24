@@ -3,13 +3,15 @@ dotenv.config();
 
 import express, { Application, Request, Response } from 'express';
 import socketIo ,{ Server as SocketIOServer } from 'socket.io';
-import mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
 import * as path from 'path';
 import { createServer, Server as HttpServer } from 'http';
 
 import { IndexRoute } from './../routes/IndexRoute';
 import passportConfig from './../config/passport';
+
+import mongoose from 'mongoose';
+import dbConfig from './../config/database';
 
 export class StartServer {
     private app: Application;
@@ -21,17 +23,17 @@ export class StartServer {
         this.server = createServer(this.app);
         this.io = socketIo(this.server);
 
+        passportConfig();
         this.startServer();
         this.setStaticConfig();
         this.setRouter();
         this.setDatabaseConnect();
-        passportConfig();
     }
     private setRouter () {
         this.app.use(new IndexRoute('/').setRoute());
     }
     private setDatabaseConnect() {
-        mongoose.connect(process.env.MONGO_URL);
+        mongoose.connect(`${dbConfig.mongoUrl}${process.env.MONGO_DATABASE_NAME}`, dbConfig.settings);
         mongoose.Promise = global.Promise;
         mongoose.connection.on('error', err => {
             console.log('Błąd połączenia do bazy danych...');

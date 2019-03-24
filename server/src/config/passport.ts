@@ -1,25 +1,28 @@
 import passport from 'passport';
-import passportJwt from 'passport-jwt';
-import User from './../models/user';
+import passportJWT from 'passport-jwt';
+import User from './../models/User';
 
-const JWTStrategy = passportJwt.Strategy;
-const ExtractJWT = passportJwt.ExtractJwt;
-
+const JWTStrategy = passportJWT.Strategy;
+const ExtractJWT = passportJWT.ExtractJwt;
 
 function verifyCallback(payload: any, done: any): Promise<any> {
-    return User.findOne({
-        _id: payload.id,
-    })
-    .then((user: any) => done(null, user))
-    .catch((err: any) => done(err))
+    return User.findOne({_id: payload.id})
+        .then(user => {
+            return done(null, user);
+        })
+        .catch(err => {
+            return done(err);
+        });
 }
 
-function passportConfig() {
+function setPassport() {
     const config = {
         jwtFromRequest: ExtractJWT.fromAuthHeaderAsBearerToken(),
-        secretOrKey: process.env.SECRET
+        secretOrKey: process.env.JWT_SECRET,
     };
+
     passport.use(User.createStrategy());
     passport.use(new JWTStrategy(config, verifyCallback));
 }
-export default passportConfig;
+
+export default setPassport;

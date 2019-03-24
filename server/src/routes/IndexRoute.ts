@@ -13,7 +13,7 @@ export class IndexRoute extends BasedRoutes {
     }
     public setRoute(): any {
         const router: Router = Router();
-        router.use(new MarkersRoute(links.endpointType.markers).setRoute());
+        // router.use(new MarkersRoute(links.endpointType.markers).setRoute());
         // router.use(OrdersRoute.setRoute(links.endpointType.orders));
         // router.use(MembersRoute.setRoute(links.endpointType.members));
         router.use(new AuthRoute(links.endpointType.auth).setRoute());
