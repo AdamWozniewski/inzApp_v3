@@ -1,21 +1,21 @@
 import { Router } from 'express';
 import passport from 'passport';
 import authController from './../controllers/authController';
-import links from "../config/staticLinks";
+import links from './../config/staticLinks';
+import { BasedRoutes } from './BasedRoutes';
 
-export class AuthRoute {
-  public static setRoute (nameOfPath: string): Router {
+export class AuthRoute extends BasedRoutes {
+  public  setRoute (): Router {
     const router: Router = Router();
     router.post(
-        `${nameOfPath}${links.endpointType.actions.register}`,
-        authController.register
+        `${this.nameOfPath}${links.endpointType.actions.register}`,
+        authController.register,
     );
     router.post(
-        `${nameOfPath}${links.endpointType.actions.login}`,
+        `${this.nameOfPath}${links.endpointType.actions.login}`,
         passport.authenticate('local', { session: false }),
-        authController.login
+        authController.login,
     );
-
     return router;
   }
 }

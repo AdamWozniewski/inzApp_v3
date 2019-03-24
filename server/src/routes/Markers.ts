@@ -1,14 +1,13 @@
-import {
-    Router,
-} from 'express';
+import { Router } from 'express';
 import { getAllMarkersByPerson } from './../controllers/markerController';
+import { BasedRoutes } from './BasedRoutes';
+import SetRoute from './../services/SetRoute';
 
-export class MarkersRoute {
-    public static setRoute (nameOfPath: string): Router {
-        const router:Router = Router();
-        const markerRoute: MarkersRoute = new MarkersRoute();
-        // router.get(`${nameOfPath}/`, markerRoute.indexMarkers.bind(markerRoute));
-        // router.post(`${nameOfPath}/add_marker`, markerRoute.makeMarker.bind(markerRoute));
+export class MarkersRoute extends BasedRoutes {
+    public setRoute(): Router {
+        const router: Router = Router();
+        // router.get(`${this.nameOfPath}/`, markerRoute.indexMarkers.bind(markerRoute));
+        // router.post(`${this.nameOfPath}/add_marker`, markerRoute.makeMarker.bind(markerRoute));
         return router;
     }
 }

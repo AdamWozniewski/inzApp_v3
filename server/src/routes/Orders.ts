@@ -1,14 +1,9 @@
-import {
-    Router,
-    Response,
-    Request
-} from 'express';
+import { Router } from 'express';
+import { BasedRoutes } from "./BasedRoutes";
 
-
-export class OrdersRoute {
-    public static setRoute (nameOfPath: string): Router {
-        const router:Router = Router();
-        // const ordersRoute:OrdersRoute = new OrdersRoute();
+export class OrdersRoute extends BasedRoutes {
+    public setRoute (): Router {
+        const router: Router = Router();
         // router.get(`${nameOfPath}/testPolaczenia`, test.testlogin);
         // router.post(`${nameOfPath}/add_marker`, memberRoute.makeMarker.bind(markerRoute));
         return router;

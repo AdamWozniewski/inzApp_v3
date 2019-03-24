@@ -1,7 +1,7 @@
 import dotenv from 'dotenv';
 dotenv.config();
 
-import express, { Application, Request, Response, Router } from 'express';
+import express, { Application, Request, Response } from 'express';
 import socketIo ,{ Server as SocketIOServer } from 'socket.io';
 import mongoose from 'mongoose';
 import * as bodyParser from 'body-parser';
@@ -28,7 +28,7 @@ export class StartServer {
         passportConfig();
     }
     private setRouter () {
-        this.app.use(IndexRoute.setUpLinks());
+        this.app.use(new IndexRoute('/').setRoute());
     }
     private setDatabaseConnect() {
         mongoose.connect(process.env.MONGO_URL);

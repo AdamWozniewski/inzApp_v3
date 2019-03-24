@@ -1,6 +1,6 @@
 import jwt from 'jsonwebtoken';
-import { Router, Response, Request } from 'express';
-import User from "../models/User";
+import { Response, Request } from 'express';
+import User from '../models/User';
 
 export default {
     async register(req: Request, res: Response, next: any): Promise<any> {
@@ -15,9 +15,8 @@ export default {
             last_name,
             email,
         });
-        console.log("HEHEHEHEHEHHE")
-        // await User.register(user, password);
-
+        await User.register(user, password);
+        return res.send('Udało sie');
     },
     async login(req: Request, res: Response, next: any): Promise<any> {
         const token = jwt.sign({
