@@ -1,10 +1,6 @@
-import {
-    Router,
-    Response,
-    Request
-} from 'express';
+import { Router, Response, Request } from 'express';
 import test from './../controllers/authController';
-import {BasedRoutes} from "./BasedRoutes";
+import { BasedRoutes } from "./BasedRoutes";
 
 export class MembersRoute extends BasedRoutes {
     public static setRoute (): Router {

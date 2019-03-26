@@ -1,7 +1,6 @@
 import { Router } from 'express';
 import { getAllMarkersByPerson } from './../controllers/markerController';
 import { BasedRoutes } from './BasedRoutes';
-import SetRoute from './../services/SetRoute';
 
 export class MarkersRoute extends BasedRoutes {
     public setRoute(): Router {

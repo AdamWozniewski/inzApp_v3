@@ -1,7 +1,7 @@
-import ACTIONS from '../static/ACTIONS';
+import ACTIONS from './../static/ACTIONS';
 
 const defaultState = {
-    dupa: "chuj"
+    visible: false,
 };
 export function modalReducer (state = defaultState, action) {
     const { type, payload } = action;

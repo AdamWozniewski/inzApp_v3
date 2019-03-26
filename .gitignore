@@ -28,6 +28,7 @@ Thumbs.db
 node_modules
 
 # Compiled files
+/server/package-lock.json
 scripts
 /.idea
 /dist

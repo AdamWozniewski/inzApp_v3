@@ -1,5 +1,5 @@
-# React - aplikacja inżynierska wersja 3.0
-Aplikacja oparta o bibliotekę ReactJS
+# webpack_4_config
+Konfiguracja webpack 4 dedykowana aplikacjom ReactJS
 
 `pobierz projekt / download a project`
 <br/>

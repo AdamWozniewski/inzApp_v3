@@ -1,10 +1,13 @@
 import React from 'react';
 import Timer from './timer/Timer';
-import ModalRootComponent from "./modal/ModalRoot";
+import ModalRootComponent from "./../containers/modal/Modal";
+import RegistrationForm from "./forms/RegistrationForm";
 
 const App = () => (
     <div>
-        <ModalRootComponent/>
+        <ModalRootComponent />
+        <RegistrationForm />
+        <Timer />
     </div>
 );
 

@@ -4,6 +4,7 @@ const path = require('path');
 
 const parts = require('./webpack.parts');
 
+// import { PATH_TO_BUILD } from './static';
 const pathToBuild = require('./static').PATH_TO_BUILD;
 
 const config = {

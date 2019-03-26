@@ -1,10 +1,10 @@
 import { Router, Response, Request } from 'express';
 import links from './../config/staticLinks';
 
-import { MarkersRoute } from './Markers';
-import { OrdersRoute } from './Orders';
-import { MembersRoute } from './Members';
-import { AuthRoute } from './Auth';
+import { MarkersRoute } from './MarkersRoute';
+import { OrdersRoute } from './OrdersRoute';
+import { MembersRoute } from './MembersRoute';
+import { AuthRoute } from './AuthRoute';
 import { BasedRoutes } from "./BasedRoutes";
 
 export class IndexRoute extends BasedRoutes {
