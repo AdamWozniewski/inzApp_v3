@@ -4,9 +4,9 @@ export function getAllMembers(req: Request, res: Response): Response {
     return res;
 }
 
-export function createNewMember(req: Request, res: Response): Response {
-    return res;
-}
+// export function createNewMember(req: Request, res: Response): Response {
+//     return res;
+// } moe nie być potrzebne
 
 export function deleteMember(req: Request, res: Response): Response {
     return res;

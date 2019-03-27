@@ -6,10 +6,6 @@ export function getAllMarkersByPerson(req: Request, res: Response): Response {
 
 export function createNewMarker(req: Request, res: Response): Response {
     const {
-        first_name,
-        last_name,
-        email,
-        password
     } = req.body;
     return res;
 }

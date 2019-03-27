@@ -1,6 +1,6 @@
 import { Response, Request } from 'express';
 
-export function getAllOrderss(req: Request, res: Response): Response {
+export function getAllOrders(req: Request, res: Response): Response {
     return res;
 }
 

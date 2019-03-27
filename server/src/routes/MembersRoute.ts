@@ -1,11 +1,13 @@
 import { Router, Response, Request } from 'express';
-import test from './../controllers/authController';
+import { getAllMembers, deleteMember, updateMember } from './../controllers/memberController'
 import { BasedRoutes } from "./BasedRoutes";
 
 export class MembersRoute extends BasedRoutes {
-    public static setRoute (): Router {
+    public setRoute (): Router {
         const router: Router = Router();
-        // router.post(`${this.nameOfPath}/add_marker`, memberRoute.makeMarker.bind(markerRoute));
+        router.get(`${this.nameOfPath}/`, getAllMembers);
+        router.put(`${this.nameOfPath}/update_member`, updateMember);
+        router.delete(`${this.nameOfPath}/delete_member`, deleteMember);
         return router;
     }
 }
